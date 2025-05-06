@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-// import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 import FareEstimator from './components/sections/FareEstimator';
