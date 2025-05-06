@@ -9,7 +9,9 @@ const AppDownload = () => {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Download the Freedom App</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+              Download the <span className="text-orange-500">Freedom App</span>
+            </h2>
             <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
               Experience the best of Freedom with our mobile app! Easily book rides, schedule deliveries, track in real time, and enjoy seamless payments—anywhere in Ghana.
             </p>
