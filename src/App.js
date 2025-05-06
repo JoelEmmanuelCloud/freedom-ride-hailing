@@ -7,8 +7,9 @@ import AppDownload from './components/sections/AppDownload';
 import WhyChooseFreedom from './components/sections/WhyChooseFreedom';
 import HowItWorks from './components/sections/HowItWorks';
 import Testimonials from './components/sections/Testimonials';
-import CtaSection from './components/sections/CtaSection';
+import RiderShowcase from './components/sections/RiderShowcase';
 import AboutSection from './components/sections/AboutSection';
+import DriverRecruitment from './components/sections/DriverRecruitment'
 import Footer from './components/layout/Footer';
 import { initializeAnalytics, trackPageView, trackEvent, setupScrollDepthTracking } from './utils/analytics';
 
@@ -84,12 +85,14 @@ const App = () => {
 
         <Navbar />
         <HeroSection />
-        <FareEstimator />
+        <DriverRecruitment/>
+        {/* <RiderShowcase/> */}
+        {/* <FareEstimator /> */}
         <AppDownload />
         <WhyChooseFreedom />
         <HowItWorks />
         <Testimonials />
-        <CtaSection />
+        {/* <CtaSection /> */}
         <AboutSection />
         <Footer />
       </div>
