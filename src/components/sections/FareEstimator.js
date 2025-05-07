@@ -138,7 +138,7 @@ const FareEstimator = () => {
       const script = document.createElement('script');
       
       // Make sure to replace this with your valid API key
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAG5ZidnV3a-wuHwUg8bd_hLrEVbTvWAno&libraries=places`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=&libraries=places`;
       script.async = true;
       script.defer = true;
       
