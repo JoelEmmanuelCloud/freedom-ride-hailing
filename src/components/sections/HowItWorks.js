@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { trackEvent } from '../../utils/analytics';
@@ -71,6 +71,20 @@ const HowItWorks = () => {
   const color = '#FF6B00';
   const steps = STEPS_CONTENT[serviceType];
 
+  // Listen for navigation events from navbar
+  useEffect(() => {
+    const handleServiceSwitch = (event) => {
+      const { serviceType: newServiceType } = event.detail;
+      setServiceType(newServiceType);
+    };
+
+    window.addEventListener('switchService', handleServiceSwitch);
+    
+    return () => {
+      window.removeEventListener('switchService', handleServiceSwitch);
+    };
+  }, []);
+
   const handleTabChange = (type) => {
     if (type === serviceType) return; // Prevent unnecessary state updates
     setServiceType(type);
@@ -78,7 +92,7 @@ const HowItWorks = () => {
   };
 
   return (
-    <section className="py-16 px-6">
+    <section id="how-it-works" className="py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-center mb-12">
           <div className="inline-flex rounded-full p-1 bg-gray-200 dark:bg-gray-700">

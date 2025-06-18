@@ -13,12 +13,31 @@ const Navbar = () => {
     // Track the click event
     trackEvent('Navigation', 'Click', `${sectionId} Link`);
     
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+    // Handle service-specific navigation
+    if (sectionId === 'ride-service' || sectionId === 'delivery-service') {
+      const serviceType = sectionId === 'ride-service' ? 'ride' : 'delivery';
+      
+      // Dispatch custom event to switch service tab
+      window.dispatchEvent(new CustomEvent('switchService', { 
+        detail: { serviceType } 
+      }));
+      
+      // Navigate to how-it-works section
+      const section = document.getElementById('how-it-works');
+      if (section) {
+        section.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     }
     
     // Close mobile menu if open
@@ -50,8 +69,24 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <div className="hidden md:flex flex-1 justify-center items-center space-x-8">
         <a 
+          href="#ride-service" 
+          className="px-3 py-2 font-medium transition-colors duration-200 hover:text-orange-600"
+          style={{ color: '#FF6B00' }}
+          onClick={(e) => scrollToSection('ride-service', e)}
+        >
+          Ride Service
+        </a>
+        <a 
+          href="#delivery-service" 
+          className="px-3 py-2 font-medium transition-colors duration-200 hover:text-orange-600"
+          style={{ color: '#FF6B00' }}
+          onClick={(e) => scrollToSection('delivery-service', e)}
+        >
+          Delivery Service
+        </a>
+        <a 
           href="#about" 
-          className="px-3 py-2 font-medium transition-colors duration-200"
+          className="px-3 py-2 font-medium transition-colors duration-200 hover:text-orange-600"
           style={{ color: '#FF6B00' }}
           onClick={(e) => scrollToSection('about', e)}
         >
@@ -59,7 +94,7 @@ const Navbar = () => {
         </a>
         <a 
           href="#contact" 
-          className="px-3 py-2 font-medium transition-colors duration-200"
+          className="px-3 py-2 font-medium transition-colors duration-200 hover:text-orange-600"
           style={{ color: '#FF6B00' }}
           onClick={(e) => scrollToSection('contact', e)}
         >
@@ -94,8 +129,24 @@ const Navbar = () => {
         <div className="absolute top-full left-0 right-0 bg-white shadow-md md:hidden">
           <div className="px-4 py-3">
             <a 
+              href="#ride-service" 
+              className="block py-2 font-medium hover:text-orange-600"
+              style={{ color: '#FF6B00' }}
+              onClick={(e) => scrollToSection('ride-service', e)}
+            >
+              Ride Service
+            </a>
+            <a 
+              href="#delivery-service" 
+              className="block py-2 font-medium hover:text-orange-600"
+              style={{ color: '#FF6B00' }}
+              onClick={(e) => scrollToSection('delivery-service', e)}
+            >
+              Delivery Service
+            </a>
+            <a 
               href="#about" 
-              className="block py-2 font-medium"
+              className="block py-2 font-medium hover:text-orange-600"
               style={{ color: '#FF6B00' }}
               onClick={(e) => scrollToSection('about', e)}
             >
@@ -103,7 +154,7 @@ const Navbar = () => {
             </a>
             <a 
               href="#contact" 
-              className="block py-2 font-medium"
+              className="block py-2 font-medium hover:text-orange-600"
               style={{ color: '#FF6B00' }}
               onClick={(e) => scrollToSection('contact', e)}
             >
