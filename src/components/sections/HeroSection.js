@@ -214,51 +214,48 @@ const HeroSection = () => {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.7 }}
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4 relative">
-                  {/* Main large image - Rider with customer */}
-                  <div className="col-span-1 lg:col-span-2">
-                    <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                      <div className="relative">
-                        <img 
-                          src="/images/freedom-DriverXRider.jpg" 
-                          alt="Freedom motorcycle rider with passenger"
-                          className="w-full object-cover h-56 sm:h-64 md:h-72 lg:h-80"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = "/api/placeholder/800/400";
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div className="absolute bottom-0 left-0 p-3 md:p-4 lg:p-5">
-                          <h3 className="text-white text-lg md:text-xl lg:text-2xl font-bold">Freedom Riders</h3>
-                          <p className="text-white/80 text-xs md:text-sm">Professional and reliable transport in Ghana</p>
-                        </div>
+                <div className="relative">
+                  {/* Main large image - Rider with customer - Always visible */}
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="relative">
+                      <img 
+                        src="/images/freedom-DriverXRider.jpg" 
+                        alt="Freedom motorcycle rider with passenger"
+                        className="w-full object-cover h-56 sm:h-64 md:h-72 lg:h-80"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "/api/placeholder/800/400";
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      <div className="absolute bottom-0 left-0 p-3 md:p-4 lg:p-5">
+                        <h3 className="text-white text-lg md:text-xl lg:text-2xl font-bold">Freedom Riders</h3>
+                        <p className="text-white/80 text-xs md:text-sm">Professional and reliable transport in Ghana</p>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Supporting images with better responsive heights */}
-                  <div className="col-span-1">
-                    <div className="overflow-hidden rounded-xl shadow-xl h-28 sm:h-32 md:h-36 lg:h-40">
+                  {/* Supporting images - Hidden on mobile, visible on tablet and up */}
+                  <div className="hidden md:grid md:grid-cols-2 gap-3 md:gap-4 mt-3 md:mt-4">
+                    {/* Supporting image 1 - Rider checking app */}
+                    <div className="overflow-hidden rounded-xl shadow-xl h-36 lg:h-40">
                       <img 
                         src="/images/Freedom-Rider2.jpg" 
                         alt="Freedom rider checking the app"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-center"
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.src = "/api/placeholder/400/200";
                         }}
                       />
                     </div>
-                  </div>
-                  
-                  {/* Supporting image 2 - Delivery rider */}
-                  <div className="col-span-1">
-                    <div className="overflow-hidden rounded-xl shadow-xl h-28 sm:h-32 md:h-36 lg:h-40">
+                    
+                    {/* Supporting image 2 - Delivery rider */}
+                    <div className="overflow-hidden rounded-xl shadow-xl h-36 lg:h-40">
                       <img 
                         src="/images/Freedom-Rider.jpg" 
                         alt="Freedom delivery rider"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-center"
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.src = "/api/placeholder/400/200";
