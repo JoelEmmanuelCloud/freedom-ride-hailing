@@ -1,4 +1,7 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { ArrowLeft, Home } from 'lucide-react';
+
+// Your existing components
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 import AppDownload from './components/sections/AppDownload';
@@ -6,11 +9,18 @@ import WhyChooseFreedom from './components/sections/WhyChooseFreedom';
 import HowItWorks from './components/sections/HowItWorks';
 import Testimonials from './components/sections/Testimonials';
 import AboutSection from './components/sections/AboutSection';
-import DriverRecruitment from './components/sections/DriverRecruitment'
+import DriverRecruitment from './components/sections/DriverRecruitment';
 import Footer from './components/layout/Footer';
+
+// Legal pages components - you'll need to create these files
+import TermsConditions from './components/pages/TermsConditions';
+import PrivacyPolicy from './components/pages/PrivacyPolicy';
+
 import { initializeAnalytics, trackPageView, trackEvent, setupScrollDepthTracking } from './utils/analytics';
 
 const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
   useEffect(() => {
     // Initialize analytics
     initializeAnalytics();
@@ -24,10 +34,57 @@ const App = () => {
     return cleanup;
   }, []);
 
-  return (
-    <div className="min-h-screen">
-      {/* Document metadata tags are now natively supported in React 19 */}
-      <title>Freedom - Ghana's Premier Ride-Hailing & Delivery Service</title>
+  // Function to handle page navigation
+  const navigateToPage = (page) => {
+    setCurrentPage(page);
+    // Scroll to top when navigating to a new page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Track page navigation
+    trackEvent('Navigation', 'Page Change', `Navigate to ${page}`);
+  };
+
+  // Function to go back to home
+  const goHome = () => {
+    setCurrentPage('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    trackEvent('Navigation', 'Page Change', 'Return to Home');
+  };
+
+  // Update document title and meta tags based on current page
+  useEffect(() => {
+    const updateMetaTags = () => {
+      switch (currentPage) {
+        case 'terms':
+          document.title = 'Terms & Conditions - Freedom Ghana';
+          updateMetaDescription('Read Freedom Ghana\'s terms and conditions for ride-hailing and delivery services.');
+          break;
+        case 'privacy':
+          document.title = 'Privacy Policy - Freedom Ghana';
+          updateMetaDescription('Learn how Freedom Ghana protects your privacy and handles your personal data.');
+          break;
+        case 'home':
+        default:
+          document.title = 'Freedom - Ghana\'s Premier Ride-Hailing & Delivery Service';
+          updateMetaDescription('Fast, affordable, and reliable rides and deliveries across Ghana. Download the Freedom app today for quick transportation and deliveries.');
+          break;
+      }
+    };
+
+    const updateMetaDescription = (description) => {
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', description);
+      }
+    };
+
+    updateMetaTags();
+  }, [currentPage]);
+
+  // Render the main home page content
+  const renderHomePage = () => (
+    <>
+      {/* Document metadata tags */}
       <meta name="description" content="Fast, affordable, and reliable rides and deliveries across Ghana. Download the Freedom app today for quick transportation and deliveries." />
       <meta name="keywords" content="ride-hailing, Ghana, taxi, transportation, delivery service, motorcycle taxi, Accra, Kumasi, Tamale" />
       
@@ -46,21 +103,125 @@ const App = () => {
       
       {/* Canonical URL */}
       <link rel="canonical" href="https://www.freedomride.com.gh/" />
-      
-      {/* JSON-LD script needs to be handled differently or with useEffect */}
-      
-      <Navbar />
+
+      <Navbar onNavigateToPage={navigateToPage} />
       <HeroSection />
-      <DriverRecruitment/>
-      {/* <RiderShowcase/> */}
-      {/* <FareEstimator /> */}
+      <DriverRecruitment />
       <AppDownload />
       <WhyChooseFreedom />
       <HowItWorks />
       <Testimonials />
-      {/* <CtaSection /> */}
       <AboutSection />
-      <Footer />
+      <Footer onNavigateToPage={navigateToPage} />
+    </>
+  );
+
+  // Render legal pages with header
+  const renderLegalPage = () => {
+    const pageComponents = {
+      terms: <TermsConditions />,
+      privacy: <PrivacyPolicy />
+    };
+
+    return (
+      <>
+        {/* Legal Page Header */}
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <button
+              onClick={goHome}
+              className="flex items-center text-orange-500 hover:text-orange-600 transition-colors duration-200 font-medium"
+            >
+              <ArrowLeft size={20} className="mr-2" />
+              Back to Home
+            </button>
+            
+            <div className="flex items-center">
+              <img 
+                src="/images/FreedomLogo.svg" 
+                alt="Freedom Logo" 
+                className="h-8 w-auto mr-2"
+                onError={(e) => {
+                  // Fallback if logo doesn't load
+                  e.target.style.display = 'none';
+                }}
+              />
+              <span className="text-xl font-bold text-orange-500">Freedom</span>
+            </div>
+            
+            <button
+              onClick={goHome}
+              className="flex items-center text-gray-600 hover:text-orange-500 transition-colors duration-200"
+              aria-label="Go to homepage"
+            >
+              <Home size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* Page Content with top padding */}
+        <div className="pt-20">
+          {pageComponents[currentPage]}
+        </div>
+
+        {/* Simplified footer for legal pages */}
+        <footer className="py-8 px-6 bg-gray-800 text-white">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex items-center justify-center mb-4">
+              <img 
+                src="/images/FreedomLogo.svg" 
+                alt="Freedom Logo" 
+                className="h-6 w-auto mr-2"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+              <span className="text-lg font-bold text-orange-500">Freedom</span>
+            </div>
+            <p className="text-gray-400 mb-4">
+              Your ride-hailing and delivery service in Ghana.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
+              <a 
+                href="#terms" 
+                className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'terms' ? 'text-orange-400' : ''}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToPage('terms');
+                }}
+              >
+                Terms & Conditions
+              </a>
+              <a 
+                href="#privacy" 
+                className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'privacy' ? 'text-orange-400' : ''}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToPage('privacy');
+                }}
+              >
+                Privacy Policy
+              </a>
+              <a 
+                href="mailto:support@freedomghana.com" 
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                Contact Support
+              </a>
+            </div>
+            <p className="text-gray-500 text-xs mt-4">
+              &copy; {new Date().getFullYear()} Freedom Ghana. All rights reserved.
+            </p>
+          </div>
+        </footer>
+      </>
+    );
+  };
+
+  // Main render logic
+  return (
+    <div className="min-h-screen">
+      {currentPage === 'home' ? renderHomePage() : renderLegalPage()}
     </div>
   );
 };
