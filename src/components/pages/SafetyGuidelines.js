@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, AlertTriangle, Phone, MapPin, Eye, Users, Bike, Package, Star, Lock, CheckCircle, UserCheck, Mail } from 'lucide-react';
+import { Shield, AlertTriangle, Phone, MapPin, Eye, Users, Bike, Package, Lock, CheckCircle, UserCheck, Mail } from 'lucide-react';
 
 const SafetyGuidelines = () => {
   const fadeInUp = {

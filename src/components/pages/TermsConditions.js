@@ -1,6 +1,6 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
-import { FileText, Calendar, Shield, AlertTriangle } from 'lucide-react';
+import { FileText, Calendar, AlertTriangle } from 'lucide-react';
 
 const TermsConditions = () => {
   const fadeInUp = {
