@@ -118,29 +118,11 @@ const Footer = ({ onNavigateToPage }) => {
               </li>
               <li>
                 <a 
-                  href="#driver-recruitment" 
-                  onClick={(e) => scrollToSection('driver-recruitment', e)} 
-                  className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
-                >
-                  Become a Driver
-                </a>
-              </li>
-              <li>
-                <a 
                   href="#how-it-works" 
                   onClick={(e) => scrollToSection('how-it-works', e)} 
                   className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
                 >
                   How It Works
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#why-choose-freedom" 
-                  onClick={(e) => scrollToSection('why-choose-freedom', e)} 
-                  className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
-                >
-                  Why Choose Us
                 </a>
               </li>
             </ul>
@@ -177,18 +159,6 @@ const Footer = ({ onNavigateToPage }) => {
                   Privacy Policy
                 </a>
               </li>
-              <li>
-                <a 
-                  href="#support" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection('contact', e);
-                  }}
-                  className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
-                >
-                  Support Center
-                </a>
-              </li>
             </ul>
           </div>
           
@@ -220,16 +190,6 @@ const Footer = ({ onNavigateToPage }) => {
                   Zender Street Akweley Cross River<br />
                   Accra, Ghana
                 </span>
-              </div>
-              
-              {/* Emergency Contact */}
-              <div className="mt-4 p-3 bg-red-800 rounded-lg border border-red-600">
-                <h4 className="text-sm font-semibold text-red-200 mb-2">🚨 Emergency Support</h4>
-                <div className="text-xs text-red-100 space-y-1">
-                  <div>24/7 Safety Hotline</div>
-                  <div className="font-medium text-red-50">+233 275 663 090</div>
-                  <div className="text-red-200">safety@freedomghana.com</div>
-                </div>
               </div>
               
               {/* Business Hours */}
@@ -286,17 +246,6 @@ const Footer = ({ onNavigateToPage }) => {
                 Accessibility
               </a>
             </div>
-          </div>
-          
-          {/* App Download CTA */}
-          <div className="mt-6 text-center">
-            <a 
-              href="#app-download" 
-              onClick={(e) => scrollToSection('app-download', e)}
-              className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-full transition-colors duration-200"
-            >
-              Download Freedom App
-            </a>
           </div>
         </div>
       </div>
