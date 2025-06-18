@@ -17,7 +17,7 @@ const DriverRecruitment = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white text-gray-800 overflow-hidden relative">
+    <section id="driver-recruitment" className="py-12 sm:py-16 px-4 sm:px-6 bg-white text-gray-800 overflow-hidden relative">
       {/* Orange decorative circles */}
       <div className="absolute -top-24 -right-24 w-64 h-64 bg-orange-500 rounded-full opacity-10"></div>
       <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-orange-500 rounded-full opacity-10"></div>

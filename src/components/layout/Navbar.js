@@ -85,12 +85,12 @@ const Navbar = () => {
           Delivery Service
         </a>
         <a 
-          href="#about" 
+          href="#driver-recruitment" 
           className="px-3 py-2 font-medium transition-colors duration-200 hover:text-orange-600"
           style={{ color: '#FF6B00' }}
-          onClick={(e) => scrollToSection('about', e)}
+          onClick={(e) => scrollToSection('driver-recruitment', e)}
         >
-          About Us
+          Become a Driver
         </a>
         <a 
           href="#contact" 
@@ -148,12 +148,12 @@ const Navbar = () => {
               Delivery Service
             </a>
             <a 
-              href="#about" 
+              href="#driver-recruitment" 
               className="block py-2 font-medium hover:text-orange-600"
               style={{ color: '#FF6B00' }}
-              onClick={(e) => scrollToSection('about', e)}
+              onClick={(e) => scrollToSection('driver-recruitment', e)}
             >
-              About Us
+              Become a Driver
             </a>
             <a 
               href="#contact" 
