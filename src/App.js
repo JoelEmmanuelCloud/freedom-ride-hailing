@@ -12,9 +12,10 @@ import AboutSection from './components/sections/AboutSection';
 import DriverRecruitment from './components/sections/DriverRecruitment';
 import Footer from './components/layout/Footer';
 
-// Legal pages components - you'll need to create these files
+// Legal pages components
 import TermsConditions from './components/pages/TermsConditions';
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
+import SafetyGuidelines from './components/pages/SafetyGuidelines';
 
 import { initializeAnalytics, trackPageView, trackEvent, setupScrollDepthTracking } from './utils/analytics';
 
@@ -62,6 +63,10 @@ const App = () => {
         case 'privacy':
           document.title = 'Privacy Policy - Freedom Ghana';
           updateMetaDescription('Learn how Freedom Ghana protects your privacy and handles your personal data.');
+          break;
+        case 'safety':
+          document.title = 'Safety Guidelines - Freedom Ghana';
+          updateMetaDescription('Important safety guidelines for motorcycle ride-hailing and delivery services in Ghana. Your safety is our priority.');
           break;
         case 'home':
         default:
@@ -120,7 +125,22 @@ const App = () => {
   const renderLegalPage = () => {
     const pageComponents = {
       terms: <TermsConditions />,
-      privacy: <PrivacyPolicy />
+      privacy: <PrivacyPolicy />,
+      safety: <SafetyGuidelines />
+    };
+
+    // Get page title for display
+    const getPageTitle = () => {
+      switch (currentPage) {
+        case 'terms':
+          return 'Terms & Conditions';
+        case 'privacy':
+          return 'Privacy Policy';
+        case 'safety':
+          return 'Safety Guidelines';
+        default:
+          return 'Legal Information';
+      }
     };
 
     return (
@@ -147,6 +167,7 @@ const App = () => {
                 }}
               />
               <span className="text-xl font-bold text-orange-500">Freedom</span>
+              <span className="hidden md:block text-sm text-gray-500 ml-2">| {getPageTitle()}</span>
             </div>
             
             <button
@@ -182,6 +203,16 @@ const App = () => {
               Your ride-hailing and delivery service in Ghana.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
+              <a 
+                href="#safety" 
+                className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'safety' ? 'text-orange-400' : ''}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToPage('safety');
+                }}
+              >
+                Safety Guidelines
+              </a>
               <a 
                 href="#terms" 
                 className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'terms' ? 'text-orange-400' : ''}`}

@@ -116,13 +116,49 @@ const Footer = ({ onNavigateToPage }) => {
                   About Us
                 </a>
               </li>
+              <li>
+                <a 
+                  href="#driver-recruitment" 
+                  onClick={(e) => scrollToSection('driver-recruitment', e)} 
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
+                >
+                  Become a Driver
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#how-it-works" 
+                  onClick={(e) => scrollToSection('how-it-works', e)} 
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
+                >
+                  How It Works
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#why-choose-freedom" 
+                  onClick={(e) => scrollToSection('why-choose-freedom', e)} 
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
+                >
+                  Why Choose Us
+                </a>
+              </li>
             </ul>
           </div>
           
-          {/* Legal Links */}
+          {/* Legal & Safety Links */}
           <div>
-            <h3 className="text-lg font-medium mb-4 text-white">Legal</h3>
+            <h3 className="text-lg font-medium mb-4 text-white">Legal & Safety</h3>
             <ul className="space-y-3">
+              <li>
+                <a 
+                  href="#safety" 
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
+                  onClick={(e) => handleLegalPageNavigation('safety', e)}
+                >
+                  Safety Guidelines
+                </a>
+              </li>
               <li>
                 <a 
                   href="#terms" 
@@ -139,6 +175,18 @@ const Footer = ({ onNavigateToPage }) => {
                   onClick={(e) => handleLegalPageNavigation('privacy', e)}
                 >
                   Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#support" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('contact', e);
+                  }}
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
+                >
+                  Support Center
                 </a>
               </li>
             </ul>
@@ -174,6 +222,16 @@ const Footer = ({ onNavigateToPage }) => {
                 </span>
               </div>
               
+              {/* Emergency Contact */}
+              <div className="mt-4 p-3 bg-red-800 rounded-lg border border-red-600">
+                <h4 className="text-sm font-semibold text-red-200 mb-2">🚨 Emergency Support</h4>
+                <div className="text-xs text-red-100 space-y-1">
+                  <div>24/7 Safety Hotline</div>
+                  <div className="font-medium text-red-50">+233 275 663 090</div>
+                  <div className="text-red-200">safety@freedomghana.com</div>
+                </div>
+              </div>
+              
               {/* Business Hours */}
               <div className="mt-4 p-3 bg-gray-700 rounded-lg">
                 <h4 className="text-sm font-semibold text-orange-400 mb-2">Business Hours</h4>
@@ -196,6 +254,13 @@ const Footer = ({ onNavigateToPage }) => {
             
             {/* Quick Legal Links */}
             <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
+              <a 
+                href="#safety" 
+                className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
+                onClick={(e) => handleLegalPageNavigation('safety', e)}
+              >
+                Safety
+              </a>
               <a 
                 href="#terms" 
                 className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
@@ -223,7 +288,16 @@ const Footer = ({ onNavigateToPage }) => {
             </div>
           </div>
           
-
+          {/* App Download CTA */}
+          <div className="mt-6 text-center">
+            <a 
+              href="#app-download" 
+              onClick={(e) => scrollToSection('app-download', e)}
+              className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-full transition-colors duration-200"
+            >
+              Download Freedom App
+            </a>
+          </div>
         </div>
       </div>
     </footer>
