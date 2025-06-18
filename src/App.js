@@ -122,132 +122,96 @@ const App = () => {
   );
 
   // Render legal pages with header
-  const renderLegalPage = () => {
-    const pageComponents = {
-      terms: <TermsConditions />,
-      privacy: <PrivacyPolicy />,
-      safety: <SafetyGuidelines />
-    };
-
-    // Get page title for display
-    const getPageTitle = () => {
-      switch (currentPage) {
-        case 'terms':
-          return 'Terms & Conditions';
-        case 'privacy':
-          return 'Privacy Policy';
-        case 'safety':
-          return 'Safety Guidelines';
-        default:
-          return 'Legal Information';
-      }
-    };
-
-    return (
-      <>
-        {/* Legal Page Header */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <button
-              onClick={goHome}
-              className="flex items-center text-orange-500 hover:text-orange-600 transition-colors duration-200 font-medium"
-            >
-              <ArrowLeft size={20} className="mr-2" />
-              Back to Home
-            </button>
-            
-            <div className="flex items-center">
-              <img 
-                src="/images/FreedomLogo.svg" 
-                alt="Freedom Logo" 
-                className="h-8 w-auto mr-2"
-                onError={(e) => {
-                  // Fallback if logo doesn't load
-                  e.target.style.display = 'none';
-                }}
-              />
-              <span className="text-xl font-bold text-orange-500">Freedom</span>
-              <span className="hidden md:block text-sm text-gray-500 ml-2">| {getPageTitle()}</span>
-            </div>
-            
-            <button
-              onClick={goHome}
-              className="flex items-center text-gray-600 hover:text-orange-500 transition-colors duration-200"
-              aria-label="Go to homepage"
-            >
-              <Home size={20} />
-            </button>
-          </div>
-        </div>
-
-        {/* Page Content with top padding */}
-        <div className="pt-20">
-          {pageComponents[currentPage]}
-        </div>
-
-        {/* Simplified footer for legal pages */}
-        <footer className="py-8 px-6 bg-gray-800 text-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-4">
-              <img 
-                src="/images/FreedomLogo.svg" 
-                alt="Freedom Logo" 
-                className="h-6 w-auto mr-2"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-              <span className="text-lg font-bold text-orange-500">Freedom</span>
-            </div>
-            <p className="text-gray-400 mb-4">
-              Your ride-hailing and delivery service in Ghana.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
-              <a 
-                href="#safety" 
-                className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'safety' ? 'text-orange-400' : ''}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateToPage('safety');
-                }}
-              >
-                Safety Guidelines
-              </a>
-              <a 
-                href="#terms" 
-                className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'terms' ? 'text-orange-400' : ''}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateToPage('terms');
-                }}
-              >
-                Terms & Conditions
-              </a>
-              <a 
-                href="#privacy" 
-                className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'privacy' ? 'text-orange-400' : ''}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateToPage('privacy');
-                }}
-              >
-                Privacy Policy
-              </a>
-              <a 
-                href="mailto:support@freedomghana.com" 
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                Contact Support
-              </a>
-            </div>
-            <p className="text-gray-500 text-xs mt-4">
-              &copy; {new Date().getFullYear()} Freedom Ghana. All rights reserved.
-            </p>
-          </div>
-        </footer>
-      </>
-    );
+const renderLegalPage = () => {
+  const pageComponents = {
+    terms: <TermsConditions />,
+    privacy: <PrivacyPolicy />,
+    safety: <SafetyGuidelines />
   };
+
+  return (
+    <>
+      {/* Legal Page Header - Simplified with only "Back to Home" */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <button
+            onClick={goHome}
+            className="flex items-center text-orange-500 hover:text-orange-600 transition-colors duration-200 font-medium"
+          >
+            <ArrowLeft size={20} className="mr-2" />
+            Back to Home
+          </button>
+        </div>
+      </div>
+
+      {/* Page Content with top padding */}
+      <div className="pt-20">
+        {pageComponents[currentPage]}
+      </div>
+
+      {/* Simplified footer for legal pages */}
+      <footer className="py-8 px-6 bg-gray-800 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="flex items-center justify-center mb-4">
+            <img 
+              src="/images/FreedomLogo.svg" 
+              alt="Freedom Logo" 
+              className="h-6 w-auto mr-2"
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
+            />
+            <span className="text-lg font-bold text-orange-500">Freedom</span>
+          </div>
+          <p className="text-gray-400 mb-4">
+            Your ride-hailing and delivery service in Ghana.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
+            <a 
+              href="#safety" 
+              className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'safety' ? 'text-orange-400' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToPage('safety');
+              }}
+            >
+              Safety Guidelines
+            </a>
+            <a 
+              href="#terms" 
+              className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'terms' ? 'text-orange-400' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToPage('terms');
+              }}
+            >
+              Terms & Conditions
+            </a>
+            <a 
+              href="#privacy" 
+              className={`text-gray-400 hover:text-white transition-colors duration-200 ${currentPage === 'privacy' ? 'text-orange-400' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToPage('privacy');
+              }}
+            >
+              Privacy Policy
+            </a>
+            <a 
+              href="mailto:support@freedomghana.com" 
+              className="text-gray-400 hover:text-white transition-colors duration-200"
+            >
+              Contact Support
+            </a>
+          </div>
+          <p className="text-gray-500 text-xs mt-4">
+            &copy; {new Date().getFullYear()} Freedom Ghana. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </>
+  );
+};
 
   // Main render logic
   return (
