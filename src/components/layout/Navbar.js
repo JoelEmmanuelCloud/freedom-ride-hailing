@@ -106,7 +106,10 @@ const Navbar = () => {
         <a 
           href="#download" 
           className="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium transition-colors duration-200"
-          onClick={() => trackEvent('Navigation', 'Click', 'Download App Button')}
+          onClick={(e) => {
+            trackEvent('Navigation', 'Click', 'Download App Button');
+            scrollToSection('download', e);
+          }}
         >
           Download App
         </a>
@@ -163,8 +166,9 @@ const Navbar = () => {
             <a 
               href="#download" 
               className="block py-2 mt-2 text-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium transition-colors duration-200"
-              onClick={() => {
+              onClick={(e) => {
                 trackEvent('Navigation', 'Click', 'Download App Button Mobile');
+                scrollToSection('download', e);
                 setMobileMenuOpen(false);
               }}
             >
