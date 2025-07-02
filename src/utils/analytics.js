@@ -1,4 +1,4 @@
-// utils/analytics.js - Complete analytics implementation with SEO tracking
+// utils/analytics.js
 
 // Configuration
 const GA_MEASUREMENT_ID ='G-107ZYDMH0R';
