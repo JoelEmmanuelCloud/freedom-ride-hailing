@@ -1,11 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { trackEvent } from "../../utils/analytics";
 
 const HeroSection = () => {
+  const [imagesLoaded, setImagesLoaded] = useState({
+    main: false,
+    rider2: false,
+    rider: false,
+    googlePlay: false,
+    appStore: false
+  });
+
   // Track page view on component mount
   useEffect(() => {
     trackEvent("Page", "View", "Hero Section");
+    
+    // Preload critical images
+    const preloadImages = [
+      "/images/freedom-DriverXRider.jpg",
+      "/images/google-play-badge.png",
+      "/images/app-store-badge.png"
+    ];
+
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
   }, []);
 
   // Function to handle smooth scrolling to the about section
@@ -22,6 +42,11 @@ const HeroSection = () => {
         block: 'start'
       });
     }
+  };
+
+  // Handle image load events
+  const handleImageLoad = (imageKey) => {
+    setImagesLoaded(prev => ({ ...prev, [imageKey]: true }));
   };
 
   return (
@@ -116,7 +141,7 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.7 }}
               >
-                {/* Download buttons with more responsive design */}
+                {/* Download buttons with optimized loading */}
                 <motion.a
                   href="#"
                   className="flex items-center transition-transform"
@@ -125,15 +150,24 @@ const HeroSection = () => {
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <img 
-                    src="/images/google-play-badge.png" 
-                    alt="Get it on Google Play" 
-                    className="h-9 md:h-10 lg:h-12"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/api/placeholder/140/42";
-                    }}
-                  />
+                  <div className="relative">
+                    {!imagesLoaded.googlePlay && (
+                      <div className="h-9 md:h-10 lg:h-12 w-32 md:w-36 lg:w-40 bg-gray-300 rounded animate-pulse"></div>
+                    )}
+                    <img 
+                      src="/images/google-play-badge.png" 
+                      alt="Get it on Google Play" 
+                      className={`h-9 md:h-10 lg:h-12 transition-opacity duration-300 ${imagesLoaded.googlePlay ? 'opacity-100' : 'opacity-0 absolute top-0'}`}
+                      loading="eager"
+                      fetchPriority="high"
+                      onLoad={() => handleImageLoad('googlePlay')}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/api/placeholder/140/42";
+                        handleImageLoad('googlePlay');
+                      }}
+                    />
+                  </div>
                 </motion.a>
 
                 <motion.a
@@ -144,15 +178,24 @@ const HeroSection = () => {
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <img 
-                    src="/images/app-store-badge.png" 
-                    alt="Download on the App Store" 
-                    className="h-9 md:h-10 lg:h-12"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/api/placeholder/140/42";
-                    }}
-                  />
+                  <div className="relative">
+                    {!imagesLoaded.appStore && (
+                      <div className="h-9 md:h-10 lg:h-12 w-32 md:w-36 lg:w-40 bg-gray-300 rounded animate-pulse"></div>
+                    )}
+                    <img 
+                      src="/images/app-store-badge.png" 
+                      alt="Download on the App Store" 
+                      className={`h-9 md:h-10 lg:h-12 transition-opacity duration-300 ${imagesLoaded.appStore ? 'opacity-100' : 'opacity-0 absolute top-0'}`}
+                      loading="eager"
+                      fetchPriority="high"
+                      onLoad={() => handleImageLoad('appStore')}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/api/placeholder/140/42";
+                        handleImageLoad('appStore');
+                      }}
+                    />
+                  </div>
                 </motion.a>
               </motion.div>
             </div>
@@ -195,7 +238,7 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
           
-          {/* Right side - Image Carousel - Improved responsive behavior */}
+          {/* Right side - Image Carousel - Improved responsive behavior with optimized loading */}
           <motion.div 
             className="w-full lg:w-1/2 flex justify-center mt-6 lg:mt-0"
             initial={{ opacity: 0, x: 20 }}
@@ -214,16 +257,23 @@ const HeroSection = () => {
                 transition={{ duration: 0.7 }}
               >
                 <div className="relative">
-                  {/* Main large image - Rider with customer - Always visible */}
+                  {/* Main large image - Rider with customer - Always visible with skeleton loading */}
                   <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                     <div className="relative">
+                      {!imagesLoaded.main && (
+                        <div className="w-full h-56 sm:h-64 md:h-72 lg:h-80 bg-gray-300 animate-pulse rounded-2xl"></div>
+                      )}
                       <img 
                         src="/images/freedom-DriverXRider.jpg" 
                         alt="Freedom motorcycle rider with passenger"
-                        className="w-full object-cover h-56 sm:h-64 md:h-72 lg:h-80"
+                        className={`w-full object-cover h-56 sm:h-64 md:h-72 lg:h-80 transition-opacity duration-500 ${imagesLoaded.main ? 'opacity-100' : 'opacity-0 absolute top-0'}`}
+                        loading="eager"
+                        fetchPriority="high"
+                        onLoad={() => handleImageLoad('main')}
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.src = "/api/placeholder/800/400";
+                          handleImageLoad('main');
                         }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -234,30 +284,42 @@ const HeroSection = () => {
                     </div>
                   </div>
                   
-                  {/* Supporting images - Hidden on mobile, visible on tablet and up */}
+                  {/* Supporting images - Hidden on mobile, visible on tablet and up with lazy loading */}
                   <div className="hidden md:grid md:grid-cols-2 gap-3 md:gap-4 mt-3 md:mt-4">
                     {/* Supporting image 1 - Rider checking app */}
-                    <div className="overflow-hidden rounded-xl shadow-xl h-36 lg:h-40">
+                    <div className="overflow-hidden rounded-xl shadow-xl h-36 lg:h-40 relative">
+                      {!imagesLoaded.rider2 && (
+                        <div className="w-full h-full bg-gray-300 animate-pulse rounded-xl"></div>
+                      )}
                       <img 
                         src="/images/Freedom-Rider2.jpg" 
                         alt="Freedom rider checking the app"
-                        className="w-full h-full object-cover object-center"
+                        className={`w-full h-full object-cover object-center transition-opacity duration-500 ${imagesLoaded.rider2 ? 'opacity-100' : 'opacity-0 absolute top-0'}`}
+                        loading="lazy"
+                        onLoad={() => handleImageLoad('rider2')}
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.src = "/api/placeholder/400/200";
+                          handleImageLoad('rider2');
                         }}
                       />
                     </div>
                     
                     {/* Supporting image 2 - Delivery rider */}
-                    <div className="overflow-hidden rounded-xl shadow-xl h-36 lg:h-40">
+                    <div className="overflow-hidden rounded-xl shadow-xl h-36 lg:h-40 relative">
+                      {!imagesLoaded.rider && (
+                        <div className="w-full h-full bg-gray-300 animate-pulse rounded-xl"></div>
+                      )}
                       <img 
                         src="/images/Freedom-Rider.jpg" 
                         alt="Freedom delivery rider"
-                        className="w-full h-full object-cover object-center"
+                        className={`w-full h-full object-cover object-center transition-opacity duration-500 ${imagesLoaded.rider ? 'opacity-100' : 'opacity-0 absolute top-0'}`}
+                        loading="lazy"
+                        onLoad={() => handleImageLoad('rider')}
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.src = "/api/placeholder/400/200";
+                          handleImageLoad('rider');
                         }}
                       />
                     </div>
