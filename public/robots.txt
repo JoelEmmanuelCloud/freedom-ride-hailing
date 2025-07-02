@@ -1,3 +1,54 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Allow important pages
+Allow: /terms
+Allow: /privacy
+Allow: /safety
+
+# Block common admin and development paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /test/
+Disallow: /_next/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /package.json
+Disallow: /yarn.lock
+
+# Block common WordPress paths (if not using WordPress)
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+
+# Allow CSS, JS, and image files for proper indexing
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Crawl delay for politeness (optional)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.freedomride.com.gh/sitemap.xml
+Sitemap: https://www.freedomride.com.gh/sitemap-images.xml
+
+# For specific search engines (optional)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block bad bots (optional)
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /

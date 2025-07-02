@@ -1,25 +1,163 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Freedom",
+  "name": "Freedom Ghana - Ride-Hailing & Delivery",
+  "description": "Ghana's premier motorcycle taxi and delivery service. Fast, affordable, and reliable rides and deliveries across Ghana.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#FF6B00",
+  "lang": "en-GH",
+  "dir": "ltr",
+  "categories": ["travel", "navigation", "productivity", "business"],
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "purpose": "any"
     },
     {
-      "src": "logo192.png",
+      "src": "/android-chrome-192x192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
-      "src": "logo512.png",
+      "src": "/android-chrome-512x512.png",
+      "type": "image/png", 
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "180x180",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16", 
+      "purpose": "any"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "screenshots": [
+    {
+      "src": "/images/screenshots/mobile-home.png",
+      "type": "image/png",
+      "sizes": "640x1136",
+      "platform": "narrow",
+      "label": "Freedom Ghana Homepage - Mobile View"
+    },
+    {
+      "src": "/images/screenshots/desktop-home.png",
+      "type": "image/png", 
+      "sizes": "1280x720",
+      "platform": "wide",
+      "label": "Freedom Ghana Homepage - Desktop View"
+    },
+    {
+      "src": "/images/screenshots/mobile-booking.png",
+      "type": "image/png",
+      "sizes": "640x1136", 
+      "platform": "narrow",
+      "label": "Ride Booking Interface"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book a Ride",
+      "short_name": "Ride",
+      "description": "Book a motorcycle taxi ride quickly",
+      "url": "/?action=book-ride",
+      "icons": [
+        {
+          "src": "/images/icons/ride-shortcut.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Order Delivery", 
+      "short_name": "Delivery",
+      "description": "Order food or package delivery",
+      "url": "/?action=order-delivery",
+      "icons": [
+        {
+          "src": "/images/icons/delivery-shortcut.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Become a Driver",
+      "short_name": "Driver",
+      "description": "Join as a Freedom Ghana rider",
+      "url": "/?action=become-driver",
+      "icons": [
+        {
+          "src": "/images/icons/driver-shortcut.png", 
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Contact Support",
+      "short_name": "Support",
+      "description": "Get help and support",
+      "url": "/?action=contact-support",
+      "icons": [
+        {
+          "src": "/images/icons/support-shortcut.png",
+          "sizes": "96x96", 
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.freedomghana.app",
+      "id": "com.freedomghana.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/freedom-ghana/id123456789"
+    }
+  ],
+  "prefer_related_applications": true,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+freedomghana",
+      "url": "/?handler=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/share-target/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }

@@ -11,15 +11,22 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.4",
     "react-scripts": "5.0.1",
     "tailwindcss": "^3.4.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-router-dom": "^6.28.0",
+    "schema-dts": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run generate-sitemap",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "analyze-bundle": "npx webpack-bundle-analyzer build/static/js/*.js",
+    "lighthouse": "lighthouse http://localhost:3000 --output-path=./lighthouse-report.html --save-assets --view",
+    "seo-audit": "npm run lighthouse && echo 'SEO audit complete. Check lighthouse-report.html'"
   },
   "eslintConfig": {
     "extends": [
@@ -31,7 +38,8 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "not ie 11"
     ],
     "development": [
       "last 1 chrome version",
@@ -43,6 +51,31 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3"
+    "postcss": "^8.5.3",
+    "lighthouse": "^12.0.0",
+    "webpack-bundle-analyzer": "^4.10.1"
+  },
+  "homepage": "https://www.freedomride.com.gh",
+  "keywords": [
+    "ride-hailing",
+    "Ghana",
+    "motorcycle taxi",
+    "delivery service",
+    "transportation",
+    "okada",
+    "Freedom Ghana",
+    "mobile app",
+    "West Africa"
+  ],
+  "description": "Ghana's premier motorcycle taxi and delivery service. Fast, affordable, and reliable rides and deliveries across Ghana.",
+  "author": {
+    "name": "Freedom Ghana",
+    "email": "support@freedomghana.com",
+    "url": "https://www.freedomride.com.gh"
+  },
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freedomghana/website"
   }
 }

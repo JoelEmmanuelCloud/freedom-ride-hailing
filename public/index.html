@@ -2,22 +2,129 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    
+    <!-- Favicon and Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Basic Meta Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#FF6B00" />
-    <meta
-      name="description"
-      content="Freedom - Ghana's Premier Ride-Hailing & Delivery Service"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Freedom Ride-Hailing</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Freedom Ghana - Fast & Reliable Ride-Hailing & Delivery Service</title>
+    <meta name="title" content="Freedom Ghana - Fast & Reliable Ride-Hailing & Delivery Service" />
+    <meta name="description" content="Ghana's premier motorcycle taxi and delivery service. Get fast, affordable rides and deliveries in Accra, Kumasi, and beyond. Download the Freedom app today!" />
+    <meta name="keywords" content="ride-hailing Ghana, motorcycle taxi Ghana, delivery service Ghana, Freedom app, transportation Accra, taxi Kumasi, okada service" />
+    <meta name="author" content="Freedom Ghana" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.freedomghana.com/" />
+    <meta property="og:title" content="Freedom Ghana - Fast & Reliable Ride-Hailing & Delivery Service" />
+    <meta property="og:description" content="Ghana's premier motorcycle taxi and delivery service. Get fast, affordable rides and deliveries across Ghana." />
+    <meta property="og:image" content="https://www.freedomghana.com/images/freedom-og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Freedom Ghana" />
+    <meta property="og:locale" content="en_GH" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.freedomghana.com/" />
+    <meta property="twitter:title" content="Freedom Ghana - Fast & Reliable Ride-Hailing & Delivery Service" />
+    <meta property="twitter:description" content="Ghana's premier motorcycle taxi and delivery service. Get fast, affordable rides and deliveries across Ghana." />
+    <meta property="twitter:image" content="https://www.freedomghana.com/images/freedom-twitter-image.jpg" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="geo.region" content="GH" />
+    <meta name="geo.placename" content="Ghana" />
+    <meta name="geo.position" content="7.9465;-1.0232" />
+    <meta name="ICBM" content="7.9465, -1.0232" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.freedomghana.com/" />
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Freedom Ghana",
+      "alternateName": "Freedom",
+      "url": "https://www.freedomghana.com",
+      "logo": "https://www.freedomghana.com/images/FreedomLogo.svg",
+      "description": "Ghana's premier motorcycle taxi and delivery service offering fast, affordable rides and deliveries across major cities.",
+      "foundingDate": "2024",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Ghana"
+      },
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Ghana"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Transportation and Delivery Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Motorcycle Taxi Service",
+              "description": "Fast and affordable motorcycle taxi rides across Ghana"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service", 
+              "name": "Delivery Service",
+              "description": "Quick and reliable delivery service for packages and food"
+            }
+          }
+        ]
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "support@freedomghana.com"
+      },
+      "sameAs": [
+        "https://www.facebook.com/freedomghana",
+        "https://www.instagram.com/freedomghana",
+        "https://twitter.com/freedomghana"
+      ]
+    }
+    </script>
+    
+    <!-- Mobile App Deep Linking -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Freedom">
+    
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+        <h1>Freedom Ghana</h1>
+        <p>You need to enable JavaScript to run this app.</p>
+        <p>Ghana's premier ride-hailing and delivery service. Download our mobile app for the best experience!</p>
+      </div>
+    </noscript>
     <div id="root"></div>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/images/FreedomLogo.svg" as="image">
   </body>
 </html>
