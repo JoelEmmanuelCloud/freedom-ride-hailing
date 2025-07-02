@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <url>
+    <loc>https://www.freedomghana.com/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+    <image:image>
+      <image:loc>https://www.freedomghana.com/images/freedom-DriverXRider.jpg</image:loc>
+      <image:title>Freedom Ghana Motorcycle Taxi Service</image:title>
+      <image:caption>Professional motorcycle taxi riders providing safe transportation across Ghana</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.freedomghana.com/images/FreedomLogo.svg</image:loc>
+      <image:title>Freedom Ghana Logo</image:title>
+      <image:caption>Official logo of Freedom Ghana ride-hailing and delivery service</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.freedomghana.com/terms</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.freedomghana.com/privacy</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.freedomghana.com/safety</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.freedomghana.com/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <image:image>
+      <image:loc>https://www.freedomghana.com/images/freedom-DriverXRider.jpg</image:loc>
+      <image:title>Freedom Ghana Motorcycle Taxi Service</image:title>
+      <image:caption>Professional motorcycle taxi riders providing safe transportation across Ghana</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.freedomghana.com/images/FreedomLogo.svg</image:loc>
+      <image:title>Freedom Ghana Logo</image:title>
+      <image:caption>Official logo of Freedom Ghana ride-hailing and delivery service</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.freedomghana.com/images/google-play-badge.png</image:loc>
+      <image:title>Download Freedom Ghana on Google Play</image:title>
+      <image:caption>Download button for Freedom Ghana mobile app on Google Play Store</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.freedomghana.com/images/app-store-badge.png</image:loc>
+      <image:title>Download Freedom Ghana on App Store</image:title>
+      <image:caption>Download button for Freedom Ghana mobile app on Apple App Store</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.freedomghana.com/images/Freedom-Rider.jpg</image:loc>
+      <image:title>Freedom Ghana Delivery Rider</image:title>
+      <image:caption>Professional delivery rider ready for package and food delivery service</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.freedomghana.com/images/Freedom-Rider2.jpg</image:loc>
+      <image:title>Freedom Ghana Rider with Mobile App</image:title>
+      <image:caption>Motorcycle taxi rider using Freedom Ghana mobile application</image:caption>
+    </image:image>
+  </url>
+</urlset>
