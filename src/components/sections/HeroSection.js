@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { trackEvent, trackCTAClick, trackSectionView } from "../../utils/analytics";
 
 const HeroSection = () => {
@@ -69,11 +68,8 @@ const HeroSection = () => {
   };
 
   return (
-    <motion.header
+    <header
       className="w-full py-8 md:py-16 lg:py-24 relative overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
       // SEO: Add semantic HTML structure
       role="banner"
       aria-label="Freedom Ghana ride-hailing and delivery service hero section"
@@ -112,83 +108,50 @@ const HeroSection = () => {
       {/* Navigation Menu - Added at the top */}
       <nav className="container mx-auto px-4 relative z-20" aria-label="Quick navigation">
         <div className="flex justify-end py-4">
-          <motion.a
+          <a
             href="#about"
             onClick={scrollToAbout}
             className="text-white text-lg font-medium transition-all hover:text-yellow-100 relative group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
             aria-label="Learn more about Freedom Ghana"
           >
-            About Us
+            {/* About Us */}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-100 transition-all duration-300 group-hover:w-full" aria-hidden="true"></span>
-          </motion.a>
+          </a>
         </div>
       </nav>
       
-      {/* Reduced number of animated elements for better performance */}
-      <motion.div 
+      {/* Simple decorative element without animation */}
+      <div 
         className="absolute top-1/3 right-1/4 w-6 h-6 md:w-12 md:h-12 lg:w-16 lg:h-16 rounded-full border-2 border-white opacity-20"
-        animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 180, 360],
-          borderRadius: ["50%", "30%", "50%"]
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "loop"
-        }}
         aria-hidden="true"
       />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-12">
           {/* Left side - content - improved spacing and scaling */}
-          <motion.div 
-            className="w-full lg:w-1/2 mt-4 lg:mt-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-          >
+          <div className="w-full lg:w-1/2 mt-4 lg:mt-0">
             <div className="backdrop-blur-sm bg-white/10 p-5 md:p-7 lg:p-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-lg">
               {/* SEO: Main heading with proper hierarchy */}
-              <motion.h1 
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 lg:mb-5 text-white leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.7 }}
-              >
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 lg:mb-5 text-white leading-tight">
                 Your Freedom <br />
                 <span className="text-yellow-100">to Move</span>
-              </motion.h1>
+              </h1>
               
               {/* SEO: Descriptive subtitle with keywords */}
-              <motion.p 
-                className="text-base md:text-lg lg:text-xl font-light mb-5 md:mb-6 lg:mb-7 text-white text-opacity-90"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.7 }}
-              >
+              <p className="text-base md:text-lg lg:text-xl font-light mb-5 md:mb-6 lg:mb-7 text-white text-opacity-90">
                 Fast, Affordable, Reliable motorcycle taxi and delivery rides across Ghana
-              </motion.p>
+              </p>
               
               {/* SEO: App download CTAs with proper aria labels */}
-              <motion.div 
+              <div 
                 className="flex flex-row gap-3 md:gap-4 justify-center sm:justify-start"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.7 }}
                 role="group"
                 aria-label="Download Freedom Ghana mobile app"
               >
                 {/* Google Play download button */}
-                <motion.button
+                <button
                   onClick={() => handleAppDownload('Google Play', 'Hero')}
-                  className="flex items-center transition-transform focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.2 }}
+                  className="flex items-center transition-transform hover:scale-105 active:scale-98 focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded"
                   aria-label="Download Freedom Ghana app from Google Play Store"
                 >
                   <div className="relative">
@@ -210,15 +173,12 @@ const HeroSection = () => {
                       }}
                     />
                   </div>
-                </motion.button>
+                </button>
 
                 {/* App Store download button */}
-                <motion.button
+                <button
                   onClick={() => handleAppDownload('App Store', 'Hero')}
-                  className="flex items-center transition-transform focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.2 }}
+                  className="flex items-center transition-transform hover:scale-105 active:scale-98 focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded"
                   aria-label="Download Freedom Ghana app from Apple App Store"
                 >
                   <div className="relative">
@@ -240,16 +200,13 @@ const HeroSection = () => {
                       }}
                     />
                   </div>
-                </motion.button>
-              </motion.div>
+                </button>
+              </div>
             </div>
 
             {/* Mobile experience highlights - Better scaling and spacing with semantic HTML */}
-            <motion.section 
+            <section 
               className="mt-6 md:mt-8 lg:mt-10 grid grid-cols-3 gap-2 md:gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
               aria-label="Key features of Freedom Ghana service"
             >
               <div className="flex flex-col items-center text-center">
@@ -280,15 +237,12 @@ const HeroSection = () => {
                 </div>
                 <span className="text-white text-xs md:text-sm font-medium">Reliable</span>
               </div>
-            </motion.section>
-          </motion.div>
+            </section>
+          </div>
           
           {/* Right side - Image Carousel - Improved responsive behavior with optimized loading */}
-          <motion.aside 
+          <aside 
             className="w-full lg:w-1/2 flex justify-center mt-6 lg:mt-0"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.7 }}
             aria-label="Freedom Ghana service images"
           >
             <div className="relative w-full max-w-sm md:max-w-md lg:max-w-none">
@@ -296,12 +250,7 @@ const HeroSection = () => {
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 md:w-52 lg:w-64 h-40 md:h-52 lg:h-64 bg-yellow-400 opacity-30 rounded-full blur-3xl" aria-hidden="true"></div>
               
               {/* Image carousel with rider images - improved responsive layout */}
-              <motion.div
-                className="relative z-10"
-                initial={{ y: 20 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.7 }}
-              >
+              <div className="relative z-10">
                 <div className="relative">
                   {/* Main large image - Rider with customer - Always visible with skeleton loading */}
                   <figure className="relative overflow-hidden rounded-2xl shadow-2xl">
@@ -384,14 +333,11 @@ const HeroSection = () => {
                     <path d="M8 21a2 2 0 0 1-2-2v-2h12v2a2 2 0 0 1-2 2"></path>
                   </svg>
                 </div>
-              </motion.div>
+              </div>
               
               {/* Feature callouts with better positioning and sizing for all screens */}
-              <motion.div 
+              <div 
                 className="absolute -right-3 md:-right-6 lg:-right-8 top-1/4 bg-white rounded-lg md:rounded-xl p-2 md:p-3 shadow-lg z-20 max-w-[140px] sm:max-w-[160px] md:max-w-[180px] lg:max-w-[200px]"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1, duration: 0.5 }}
                 role="complementary"
                 aria-label="Safety feature highlight"
               >
@@ -407,14 +353,11 @@ const HeroSection = () => {
                     <p className="text-gray-500 text-xs">Professional & trained</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
               
               {/* Second feature callout with better positioning */}
-              <motion.div 
+              <div 
                 className="absolute -left-3 md:-left-6 lg:-left-8 bottom-1/4 bg-white rounded-lg md:rounded-xl p-2 md:p-3 shadow-lg z-20 max-w-[140px] sm:max-w-[160px] md:max-w-[180px] lg:max-w-[200px]"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.3, duration: 0.5 }}
                 role="complementary"
                 aria-label="Delivery service feature highlight"
               >
@@ -436,17 +379,14 @@ const HeroSection = () => {
                     <p className="text-gray-500 text-xs">Get items delivered fast</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </motion.aside>
+          </aside>
         </div>
         
         {/* Social proof section - Better mobile layout with structured data */}
-        <motion.section 
+        <section 
           className="mt-8 md:mt-12 lg:mt-16 relative z-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6, duration: 0.7 }}
           aria-label="Freedom Ghana user statistics and social proof"
         >
           {/* Structured data for social proof stats */}
@@ -495,9 +435,9 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
       </div>
-    </motion.header>
+    </header>
   );
 };
 

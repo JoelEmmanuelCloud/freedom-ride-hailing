@@ -11,10 +11,10 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 // Initialize analytics
 export const initializeAnalytics = () => {
-  console.log('🔧 Initializing analytics...');
+
   
   if (typeof window === 'undefined') {
-    console.log('⚠️ Window not available - skipping analytics initialization');
+
     return;
   }
 
@@ -36,7 +36,6 @@ export const initializeAnalytics = () => {
   // Set up performance monitoring
   setupPerformanceMonitoring();
   
-  console.log('✅ Analytics initialization complete');
 };
 
 // Google Analytics 4 setup
@@ -79,9 +78,8 @@ const initializeGoogleAnalytics = () => {
       sample_rate: 100
     });
 
-    console.log('✅ Google Analytics initialized');
   } catch (error) {
-    console.error('❌ Error initializing Google Analytics:', error);
+
   }
 };
 
@@ -95,10 +93,9 @@ const initializeClarity = () => {
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", CLARITY_PROJECT_ID);
-    
-    console.log('✅ Microsoft Clarity initialized');
+
   } catch (error) {
-    console.error('❌ Error initializing Microsoft Clarity:', error);
+
   }
 };
 
@@ -120,9 +117,9 @@ const initializeFacebookPixel = () => {
     window.fbq('init', FB_PIXEL_ID);
     window.fbq('track', 'PageView');
     
-    console.log('✅ Facebook Pixel initialized');
+
   } catch (error) {
-    console.error('❌ Error initializing Facebook Pixel:', error);
+   
   }
 };
 
@@ -140,9 +137,9 @@ const initializeHotjar = () => {
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     
-    console.log('✅ Hotjar initialized');
+
   } catch (error) {
-    console.error('❌ Error initializing Hotjar:', error);
+
   }
 };
 
@@ -158,8 +155,7 @@ const initializeSearchConsole = () => {
   meta.name = 'google-site-verification';
   meta.content = gscCode;
   document.head.appendChild(meta);
-  
-  console.log('✅ Google Search Console verification added');
+
 };
 
 // Enhanced page view tracking with SEO data
@@ -199,7 +195,6 @@ export const trackPageView = (pageTitle, pagePath, additionalData = {}) => {
   // Track performance metrics
   setTimeout(trackPagePerformance, 1000);
   
-  console.log('📊 Page view tracked:', currentPage.title);
 };
 
 // Track SEO-specific metrics
@@ -287,7 +282,6 @@ export const trackEvent = (category, action, label = null, value = null, additio
     window.clarity('event', `${category}_${action}`, label);
   }
 
-  console.log('🎯 Event tracked:', { category, action, label, value });
 };
 
 // Track conversion events with enhanced data
@@ -327,7 +321,7 @@ export const trackConversion = (conversionType, value = null, additionalData = {
 
   const conversion = conversions[conversionType];
   if (!conversion) {
-    console.warn(`Unknown conversion type: ${conversionType}`);
+
     return;
   }
 
@@ -358,7 +352,6 @@ export const trackConversion = (conversionType, value = null, additionalData = {
     window.clarity('event', conversion.clarity_event);
   }
 
-  console.log('💰 Conversion tracked:', conversionType, value);
 };
 
 // Track CTA clicks with conversion data
@@ -553,7 +546,6 @@ const trackPagePerformance = () => {
       });
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
     } catch (e) {
-      console.log('LCP tracking not supported');
     }
 
     // First Input Delay (FID)
@@ -577,7 +569,6 @@ const trackPagePerformance = () => {
       });
       fidObserver.observe({ entryTypes: ['first-input'] });
     } catch (e) {
-      console.log('FID tracking not supported');
     }
 
     // Cumulative Layout Shift (CLS)
@@ -605,7 +596,6 @@ const trackPagePerformance = () => {
       });
       clsObserver.observe({ entryTypes: ['layout-shift'] });
     } catch (e) {
-      console.log('CLS tracking not supported');
     }
   }
 };

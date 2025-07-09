@@ -1,20 +1,10 @@
-import { motion } from 'framer-motion';
 import { Shield, Lock, Eye, Database, UserCheck, Globe, MapPin, Phone, Mail } from 'lucide-react';
 
 const PrivacyPolicy = () => {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 40 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 py-6 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <motion.div 
-          className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-8 md:p-12"
-          {...fadeInUp}
-        >
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-8 md:p-12">
           {/* Header */}
           <div className="text-center mb-8 sm:mb-12">
             <div className="flex justify-center mb-3 sm:mb-4">
@@ -344,7 +334,7 @@ const PrivacyPolicy = () => {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

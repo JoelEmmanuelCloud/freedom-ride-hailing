@@ -1,28 +1,15 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const Testimonials = () => {
 
   return (
     <section className={`py-16 px-6 bg-gray-100`}>
       <div className="max-w-4xl mx-auto">
-        <motion.h2 
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           What Our Customers Say
-        </motion.h2>
+        </h2>
         
-        <motion.div 
-          className={`p-8 rounded-xl bg-white shadow-lg mb-8`}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className={`p-8 rounded-xl bg-white shadow-lg mb-8`}>
           <div className="flex items-center mb-4">
             <div className="mr-4">
               <div className="w-16 h-16 rounded-full bg-gray-300 overflow-hidden">
@@ -44,17 +31,10 @@ const Testimonials = () => {
           <blockquote className="text-lg italic">
             "Freedom Ride is a lifesaver during rush hour in Tamale. The app is user-friendly, and I love scheduling rides in advance. Their customer support is always responsive. Highly recommended!"
           </blockquote>
-        </motion.div>
+        </div>
         
         <div className="grid md:grid-cols-2 gap-8">
-          <motion.div 
-            className={`p-6 rounded-xl bg-white shadow-lg`}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            whileHover={{ y: -10 }}
-          >
+          <div className={`p-6 rounded-xl bg-white shadow-lg hover:-translate-y-2 transition-transform duration-300`}>
             <div className="flex mb-3">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -70,16 +50,9 @@ const Testimonials = () => {
               <span className="mx-2">•</span>
               <p className={`text-gray-600`}>Accra</p>
             </div>
-          </motion.div>
+          </div>
           
-          <motion.div 
-            className={`p-6 rounded-xl bg-white shadow-lg`}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            whileHover={{ y: -10 }}
-          >
+          <div className={`p-6 rounded-xl bg-white shadow-lg hover:-translate-y-2 transition-transform duration-300`}>
             <div className="flex mb-3">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -95,7 +68,7 @@ const Testimonials = () => {
               <span className="mx-2">•</span>
               <p className={`text-gray-600`}>Kumasi</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

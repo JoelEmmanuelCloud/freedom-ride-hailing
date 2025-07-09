@@ -1,28 +1,10 @@
-import { motion } from 'framer-motion';
 import { Shield, AlertTriangle, Phone, MapPin, Eye, Users, Bike, Package, Lock, CheckCircle, UserCheck, Mail } from 'lucide-react';
 
 const SafetyGuidelines = () => {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 40 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 py-6 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <motion.div 
-          className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-8 md:p-12"
-          {...fadeInUp}
-        >
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-8 md:p-12">
           {/* Header */}
           <div className="text-center mb-8 sm:mb-12">
             <div className="flex justify-center mb-3 sm:mb-4">
@@ -70,13 +52,8 @@ const SafetyGuidelines = () => {
                 <span>Passenger Safety Guidelines</span>
               </h2>
               
-              <motion.div 
-                className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8"
-                variants={staggerContainer}
-                initial="initial"
-                animate="animate"
-              >
-                <motion.div variants={fadeInUp} className="bg-blue-50 p-4 sm:p-6 rounded-xl">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                <div className="bg-blue-50 p-4 sm:p-6 rounded-xl">
                   <h3 className="text-base sm:text-lg md:text-xl font-semibold text-blue-800 mb-3 sm:mb-4 flex items-center">
                     <CheckCircle className="mr-2" size={18} />
                     Before Your Ride
@@ -89,9 +66,9 @@ const SafetyGuidelines = () => {
                     <li>Wait in a safe, well-lit location for pickup</li>
                     <li>Wear bright or reflective clothing, especially at night</li>
                   </ul>
-                </motion.div>
+                </div>
 
-                <motion.div variants={fadeInUp} className="bg-green-50 p-4 sm:p-6 rounded-xl">
+                <div className="bg-green-50 p-4 sm:p-6 rounded-xl">
                   <h3 className="text-base sm:text-lg md:text-xl font-semibold text-green-800 mb-3 sm:mb-4 flex items-center">
                     <Bike className="mr-2" size={18} />
                     During Your Ride
@@ -104,9 +81,9 @@ const SafetyGuidelines = () => {
                     <li>Don't use your phone while the motorcycle is moving</li>
                     <li>Trust your instincts - if something feels wrong, speak up</li>
                   </ul>
-                </motion.div>
+                </div>
 
-                <motion.div variants={fadeInUp} className="bg-purple-50 p-4 sm:p-6 rounded-xl">
+                <div className="bg-purple-50 p-4 sm:p-6 rounded-xl">
                   <h3 className="text-base sm:text-lg md:text-xl font-semibold text-purple-800 mb-3 sm:mb-4 flex items-center">
                     <Eye className="mr-2" size={18} />
                     Safety Tips
@@ -119,9 +96,9 @@ const SafetyGuidelines = () => {
                     <li>Keep valuables secure and out of sight</li>
                     <li>Rate your rider honestly to help maintain safety standards</li>
                   </ul>
-                </motion.div>
+                </div>
 
-                <motion.div variants={fadeInUp} className="bg-orange-50 p-4 sm:p-6 rounded-xl">
+                <div className="bg-orange-50 p-4 sm:p-6 rounded-xl">
                   <h3 className="text-base sm:text-lg md:text-xl font-semibold text-orange-800 mb-3 sm:mb-4 flex items-center">
                     <Lock className="mr-2" size={18} />
                     Personal Security
@@ -134,8 +111,8 @@ const SafetyGuidelines = () => {
                     <li>Stay alert and aware of your surroundings</li>
                     <li>Report suspicious behavior immediately</li>
                   </ul>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </section>
 
             {/* Delivery Safety */}
@@ -374,7 +351,7 @@ const SafetyGuidelines = () => {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

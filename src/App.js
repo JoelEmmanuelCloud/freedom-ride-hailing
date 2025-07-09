@@ -270,8 +270,8 @@ const App = () => {
       addStructuredData(page);
     }
     
-    // Scroll to top when navigating to a new page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // FIXED: Scroll to top instantly without smooth animation
+    window.scrollTo(0, 0);
     
     // Track page navigation
     trackEvent('Navigation', 'Page Change', `Navigate to ${page}`);
