@@ -164,8 +164,6 @@ const RiderApplicationForm = ({ isOpen, onClose }) => {
         break;
         
        case 3:
-          // Debug log to see the actual value
-        console.log('hasMotorbike value:', formData.hasMotorbike, 'type:', typeof formData.hasMotorbike);
         
         // Check if hasMotorbike is explicitly set to true or false
         if (typeof formData.hasMotorbike !== 'boolean') {
@@ -277,11 +275,10 @@ const RiderApplicationForm = ({ isOpen, onClose }) => {
       if (response.ok && data.success) {
         setSubmitSuccess(true);
       } else {
-        console.error('Submission failed:', data); // Debug log
+
         setSubmitError(data.message || 'Application submission failed. Please try again.');
       }
     } catch (error) {
-      console.error('Network error:', error); // Debug log
       setSubmitError('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);

@@ -1,9 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import RiderApplicationForm from './RiderApplicationForm';
 
 const DriverRecruitment = () => {
   const [showForm, setShowForm] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState({
+    groupDriver: false,
+    driverWithBox: false,
+    riderAndDriver: false
+  });
+
+  // Preload images for better performance
+  useEffect(() => {
+    const imagesToPreload = [
+      { src: "/images/FreedomGroupDriver.jpg", key: "groupDriver" },
+      { src: "/images/FreedomDriverWithDeliveryBox.jpg", key: "driverWithBox" },
+      { src: "/images/Freedom-Rider-and-Driver.jpg", key: "riderAndDriver" }
+    ];
+
+    // Preload main image immediately, others after a delay
+    const mainImage = new Image();
+    mainImage.onload = () => setImagesLoaded(prev => ({ ...prev, groupDriver: true }));
+    mainImage.onerror = () => setImagesLoaded(prev => ({ ...prev, groupDriver: true }));
+    mainImage.src = imagesToPreload[0].src;
+
+    // Preload other images after a short delay
+    const timer = setTimeout(() => {
+      imagesToPreload.slice(1).forEach(({ src, key }) => {
+        const img = new Image();
+        img.onload = () => setImagesLoaded(prev => ({ ...prev, [key]: true }));
+        img.onerror = () => setImagesLoaded(prev => ({ ...prev, [key]: true }));
+        img.src = src;
+      });
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Animation variants
   const fadeIn = {
@@ -17,6 +49,48 @@ const DriverRecruitment = () => {
         staggerChildren: 0.1
       }
     }
+  };
+
+  // Optimized image component
+  const OptimizedImage = ({ 
+    src, 
+    alt, 
+    className, 
+    loadingKey,
+    fallbackSrc = "/api/placeholder/400/300",
+    ...props 
+  }) => {
+    const [currentSrc, setCurrentSrc] = useState(src);
+    const [hasError, setHasError] = useState(false);
+
+    const handleImageLoad = () => {
+      setImagesLoaded(prev => ({ ...prev, [loadingKey]: true }));
+    };
+
+    const handleImageError = () => {
+      if (!hasError) {
+        setHasError(true);
+        setCurrentSrc(fallbackSrc);
+        setImagesLoaded(prev => ({ ...prev, [loadingKey]: true }));
+      }
+    };
+
+    return (
+      <div className="relative w-full h-full">
+        {!imagesLoaded[loadingKey] && (
+          <div className={`absolute inset-0 bg-gray-300 animate-pulse ${className}`} aria-hidden="true"></div>
+        )}
+        <img 
+          src={currentSrc}
+          alt={alt}
+          className={`${className} transition-opacity duration-300 ${imagesLoaded[loadingKey] ? 'opacity-100' : 'opacity-0'}`}
+          loading="lazy"
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          {...props}
+        />
+      </div>
+    );
   };
 
   return (
@@ -176,10 +250,12 @@ const DriverRecruitment = () => {
             >
               {/* Main large image on the left */}
               <div className="col-span-7 row-span-2 relative rounded-2xl overflow-hidden shadow-xl">
-                <img 
-                  src="/images/FreedomGroupDriver.jpg" 
+                <OptimizedImage
+                  src="/images/FreedomGroupDriver.jpg"
                   alt="Freedom riders in orange uniform"
                   className="w-full h-full object-cover"
+                  loadingKey="groupDriver"
+                  fallbackSrc="/api/placeholder/500/600"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-70"></div>
                 <div className="absolute bottom-4 left-4 text-white">
@@ -190,19 +266,23 @@ const DriverRecruitment = () => {
               
               {/* Top right image */}
               <div className="col-span-5 row-span-1 relative rounded-2xl overflow-hidden shadow-lg">
-                <img 
-                  src="/images/FreedomDriverWithDeliveryBox.jpg" 
+                <OptimizedImage
+                  src="/images/FreedomDriverWithDeliveryBox.jpg"
                   alt="Freedom rider with delivery box"
                   className="w-full h-full object-cover"
+                  loadingKey="driverWithBox"
+                  fallbackSrc="/api/placeholder/300/200"
                 />
               </div>
               
               {/* Bottom right image */}
               <div className="col-span-5 row-span-1 relative rounded-2xl overflow-hidden shadow-lg">
-                <img 
-                  src="images/Freedom-Rider-and-Driver.jpg" 
+                <OptimizedImage
+                  src="/images/Freedom-Rider-and-Driver.jpg"
                   alt="Freedom riders lineup"
                   className="w-full h-full object-cover"
+                  loadingKey="riderAndDriver"
+                  fallbackSrc="/api/placeholder/300/200"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 <div className="absolute bottom-3 left-3 right-3">

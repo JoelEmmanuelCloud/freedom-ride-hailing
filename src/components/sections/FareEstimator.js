@@ -56,11 +56,9 @@ const FareEstimator = () => {
   useEffect(() => {
     const initializeMap = () => {
       if (!window.google || !window.google.maps) {
-        console.error('Google Maps API not available');
+
         return;
       }
-      
-      console.log('Initializing Google Maps...');
       
       // Create map instance
       const mapInstance = new window.google.maps.Map(mapRef.current, {
@@ -134,7 +132,6 @@ const FareEstimator = () => {
     
     // Load Google Maps API if it's not already loaded
     if (!window.google || !window.google.maps) {
-      console.log('Loading Google Maps API script...');
       const script = document.createElement('script');
       
       // Make sure to replace this with your valid API key
@@ -143,7 +140,7 @@ const FareEstimator = () => {
       script.defer = true;
       
       script.onload = () => {
-        console.log('Google Maps API script loaded successfully');
+  
         initializeMap();
       };
       
@@ -153,7 +150,6 @@ const FareEstimator = () => {
       
       document.head.appendChild(script);
     } else {
-      console.log('Google Maps API already loaded');
       initializeMap();
     }
   }, [darkMode, mapTheme]);
