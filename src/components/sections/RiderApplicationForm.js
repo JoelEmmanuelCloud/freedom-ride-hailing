@@ -62,7 +62,7 @@ const RiderApplicationForm = ({ isOpen, onClose }) => {
     workingModel: '',
     preferredWorkingHours: '',
     
-    // Vehicle Information
+    // Motor Information
     hasMotorbike: null,
     motorbikeDetails: {
       make: '',
@@ -98,7 +98,7 @@ const RiderApplicationForm = ({ isOpen, onClose }) => {
   const steps = [
     { id: 1, title: 'Personal Info', description: 'Basic information about you' },
     { id: 2, title: 'Work Preferences', description: 'Your preferred working style' },
-    { id: 3, title: 'Vehicle Details', description: 'Motorbike information' },
+    { id: 3, title: 'Motor Details', description: 'Motorbike information' },
     { id: 4, title: 'License & Experience', description: 'Your riding credentials' },
     { id: 5, title: 'Emergency Contact', description: 'Someone we can reach' }
   ];
