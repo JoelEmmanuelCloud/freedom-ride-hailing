@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, PhoneCall, Mail, MapPin } from 'lucide-react';
 
-const Footer = ({ onNavigateToPage }) => {
+const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const currentYear = new Date().getFullYear();
   
-  // Function to handle smooth scrolling to sections
+  // Function to handle smooth scrolling to sections (only on home page)
   const scrollToSection = (sectionId, e) => {
     e.preventDefault();
     
@@ -13,12 +16,27 @@ const Footer = ({ onNavigateToPage }) => {
       window.trackEvent('Navigation', 'Click', `${sectionId} Section - Footer`);
     }
     
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+    // If not on home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     }
   };
 
@@ -31,13 +49,8 @@ const Footer = ({ onNavigateToPage }) => {
       window.trackEvent('Navigation', 'Click', `${page} Page - Footer`);
     }
     
-    // If onNavigateToPage function is provided, use it
-    if (onNavigateToPage) {
-      onNavigateToPage(page);
-    } else {
-      // Fallback: log to console for development
-      console.log(`Navigate to ${page} page`);
-    }
+    // Navigate to the legal page using React Router
+    navigate(page);
   };
 
   // Handle external link clicks with tracking
@@ -134,27 +147,27 @@ const Footer = ({ onNavigateToPage }) => {
             <ul className="space-y-3">
               <li>
                 <a 
-                  href="#safety" 
+                  href="/safety" 
                   className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
-                  onClick={(e) => handleLegalPageNavigation('safety', e)}
+                  onClick={(e) => handleLegalPageNavigation('/safety', e)}
                 >
                   Safety Guidelines
                 </a>
               </li>
               <li>
                 <a 
-                  href="#terms" 
+                  href="/terms" 
                   className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
-                  onClick={(e) => handleLegalPageNavigation('terms', e)}
+                  onClick={(e) => handleLegalPageNavigation('/terms', e)}
                 >
                   Terms & Conditions
                 </a>
               </li>
               <li>
                 <a 
-                  href="#privacy" 
+                  href="/privacypolicy" 
                   className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
-                  onClick={(e) => handleLegalPageNavigation('privacy', e)}
+                  onClick={(e) => handleLegalPageNavigation('/privacypolicy', e)}
                 >
                   Privacy Policy
                 </a>
@@ -171,6 +184,7 @@ const Footer = ({ onNavigateToPage }) => {
                 <a 
                   href="tel:+233275663090" 
                   className="hover:text-orange-400 transition-colors duration-200"
+                  onClick={() => window.trackEvent && window.trackEvent('Contact', 'Click', 'Phone')}
                 >
                   +233 275 663 090
                 </a>
@@ -180,6 +194,7 @@ const Footer = ({ onNavigateToPage }) => {
                 <a 
                   href="mailto:support@freedomghana.com" 
                   className="hover:text-orange-400 transition-colors duration-200"
+                  onClick={() => window.trackEvent && window.trackEvent('Contact', 'Click', 'Email')}
                 >
                   support@freedomghana.com
                 </a>
@@ -215,23 +230,35 @@ const Footer = ({ onNavigateToPage }) => {
             {/* Quick Legal Links */}
             <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
               <a 
-                href="#safety" 
-                className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
-                onClick={(e) => handleLegalPageNavigation('safety', e)}
+                href="/safety" 
+                className={`transition-colors duration-200 ${
+                  location.pathname === '/safety' 
+                    ? 'text-orange-400' 
+                    : 'text-gray-400 hover:text-orange-400'
+                }`}
+                onClick={(e) => handleLegalPageNavigation('/safety', e)}
               >
                 Safety
               </a>
               <a 
-                href="#terms" 
-                className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
-                onClick={(e) => handleLegalPageNavigation('terms', e)}
+                href="/terms" 
+                className={`transition-colors duration-200 ${
+                  location.pathname === '/terms' 
+                    ? 'text-orange-400' 
+                    : 'text-gray-400 hover:text-orange-400'
+                }`}
+                onClick={(e) => handleLegalPageNavigation('/terms', e)}
               >
                 Terms
               </a>
               <a 
-                href="#privacy" 
-                className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
-                onClick={(e) => handleLegalPageNavigation('privacy', e)}
+                href="/privacypolicy" 
+                className={`transition-colors duration-200 ${
+                  location.pathname === '/privacypolicy' 
+                    ? 'text-orange-400' 
+                    : 'text-gray-400 hover:text-orange-400'
+                }`}
+                onClick={(e) => handleLegalPageNavigation('/privacypolicy', e)}
               >
                 Privacy
               </a>

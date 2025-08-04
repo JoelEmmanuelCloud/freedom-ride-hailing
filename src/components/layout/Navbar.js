@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { trackEvent } from '../../utils/analytics';
 
 const Navbar = () => {
   // Mobile menu state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Function to handle smooth scrolling to sections
   const scrollToSection = (sectionId, e) => {
@@ -13,6 +16,24 @@ const Navbar = () => {
     // Track the click event
     trackEvent('Navigation', 'Click', `${sectionId} Link`);
     
+    // If not on home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        scrollToSectionHelper(sectionId);
+      }, 100);
+    } else {
+      scrollToSectionHelper(sectionId);
+    }
+    
+    // Close mobile menu if open
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const scrollToSectionHelper = (sectionId) => {
     // Handle service-specific navigation
     if (sectionId === 'ride-service' || sectionId === 'delivery-service') {
       const serviceType = sectionId === 'ride-service' ? 'ride' : 'delivery';
@@ -39,11 +60,12 @@ const Navbar = () => {
         });
       }
     }
-    
-    // Close mobile menu if open
-    if (mobileMenuOpen) {
-      setMobileMenuOpen(false);
-    }
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    trackEvent('Navigation', 'Click', 'Logo');
+    navigate('/');
   };
 
   return (
@@ -56,7 +78,7 @@ const Navbar = () => {
     >
       {/* Logo */}
       <div className="flex items-center">
-        <a href="/" className="flex items-center" onClick={() => trackEvent('Navigation', 'Click', 'Logo')}>
+        <a href="/" className="flex items-center" onClick={handleLogoClick}>
           <img 
             src="/images/FreedomLogo.svg" 
             alt="Freedom Logo" 

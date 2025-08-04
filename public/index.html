@@ -54,6 +54,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
+    <!-- Alternate URLs for legal pages -->
+    <link rel="alternate" href="https://www.freedomghana.com/terms" hreflang="en" title="Terms and Conditions" />
+    <link rel="alternate" href="https://www.freedomghana.com/privacypolicy" hreflang="en" title="Privacy Policy" />
+    <link rel="alternate" href="https://www.freedomghana.com/safety" hreflang="en" title="Safety Guidelines" />
+    
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -98,7 +103,16 @@
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "email": "support@freedomghana.com"
+        "telephone": "+233-275-663-090",
+        "email": "support@freedomghana.com",
+        "availableLanguage": ["English"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Zender Street Akweley Cross River",
+        "addressLocality": "Accra",
+        "addressRegion": "Greater Accra",
+        "addressCountry": "GH"
       },
       "sameAs": [
         "https://www.facebook.com/freedomghana",
@@ -108,10 +122,28 @@
     }
     </script>
     
+    <!-- Website Navigation Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Freedom Ghana",
+      "url": "https://www.freedomghana.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.freedomghana.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
     <!-- Mobile App Deep Linking -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Freedom">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/images/FreedomLogo.svg" as="image">
     
   </head>
   <body>
@@ -120,11 +152,13 @@
         <h1>Freedom Ghana</h1>
         <p>You need to enable JavaScript to run this app.</p>
         <p>Ghana's premier ride-hailing and delivery service. Download our mobile app for the best experience!</p>
+        <ul style="list-style: none; padding: 0; margin: 20px 0;">
+          <li><a href="/terms" style="color: #FF6B00; text-decoration: none;">Terms & Conditions</a></li>
+          <li><a href="/privacypolicy" style="color: #FF6B00; text-decoration: none;">Privacy Policy</a></li>
+          <li><a href="/safety" style="color: #FF6B00; text-decoration: none;">Safety Guidelines</a></li>
+        </ul>
       </div>
     </noscript>
     <div id="root"></div>
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/images/FreedomLogo.svg" as="image">
   </body>
 </html>
