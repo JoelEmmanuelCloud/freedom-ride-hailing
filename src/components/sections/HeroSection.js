@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from 'framer-motion';
 import { trackEvent, trackCTAClick, trackSectionView } from "../../utils/analytics";
 
 const HeroSection = () => {
@@ -17,6 +18,9 @@ const HeroSection = () => {
     googlePlay: false,
     appStore: false
   });
+
+  // Google Play Store URL - same as AppDownload component
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.freedomghana.app.user&pcampaignid=web_share";
 
   // Track page view on component mount
   useEffect(() => {
@@ -117,15 +121,20 @@ const HeroSection = () => {
     trackCTAClick(`Download App ${platform}`, source, "app-download");
     trackEvent("Conversion", "App Download Intent", `${platform} - ${source}`);
     
-    // In a real app, redirect to actual store URLs
+    // Updated store URLs - use actual Play Store URL
     const storeUrls = {
-      'Google Play': 'https://play.google.com/store/apps/details?id=com.freedomghana.app',
-      'App Store': 'https://apps.apple.com/app/freedom-ghana/id123456789'
+      'Google Play': playStoreUrl,
+      'App Store': '#' // Placeholder until App Store app is approved
     };
     
-    // For production, replace with actual navigation
+    // For production, navigate to actual store
     if (typeof window !== 'undefined') {
-      window.open(storeUrls[platform], '_blank', 'noopener,noreferrer');
+      if (platform === 'Google Play') {
+        window.open(storeUrls[platform], '_blank', 'noopener,noreferrer');
+      } else {
+        // App Store coming soon - could show a toast or modal
+        console.log('App Store version coming soon!');
+      }
     }
   };
 
@@ -271,39 +280,47 @@ const HeroSection = () => {
                   role="group"
                   aria-label="Download Freedom Ghana mobile app"
                 >
-                  {/* Google Play download button */}
-                  <button
-                    onClick={() => handleAppDownload('Google Play', 'Hero')}
-                    className="flex items-center transition-transform hover:scale-105 active:scale-98 focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded"
+                  {/* Google Play download button - EXACT COPY FROM APP DOWNLOAD */}
+                  <motion.a
+                    href={playStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-9 md:h-10 lg:h-12 w-32 md:w-36 lg:w-40 flex items-center justify-center"
+                    onClick={() => trackEvent('Download', 'Click', 'Google Play - Hero Section')}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
                     aria-label="Download Freedom Ghana app from Google Play Store"
                   >
-                    <OptimizedImage
-                      src="/images/google-play-badge.png"
-                      alt="Get Freedom Ghana on Google Play"
-                      className="h-9 md:h-10 lg:h-12 w-32 md:w-36 lg:w-40"
-                      imageKey="googlePlay"
-                      loading="eager"
-                      fetchPriority="high"
-                      fallbackSrc="/api/placeholder/140/42"
+                    <img 
+                      src="/images/google-play-badge.png" 
+                      alt="Get it on Google Play" 
+                      className="h-full w-full object-contain"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 70' preserveAspectRatio='xMidYMid meet'%3E%3Cg fill='%23fff'%3E%3Crect width='240' height='70' rx='10' fill='%23000'/%3E%3Cpath d='M130.24 28.76c-3.28 0-5.96 2.5-5.96 5.94 0 3.42 2.68 5.94 5.96 5.94 3.3 0 5.98-2.52 5.98-5.94 0-3.44-2.68-5.94-5.98-5.94zm0 9.53c-1.72 0-3.2-1.42-3.2-3.6 0-2.2 1.48-3.6 3.2-3.6 1.74 0 3.22 1.4 3.22 3.6 0 2.18-1.48 3.6-3.22 3.6zm-12.45-9.53c-3.28 0-5.96 2.5-5.96 5.94 0 3.42 2.68 5.94 5.96 5.94 3.3 0 5.98-2.52 5.98-5.94 0-3.44-2.68-5.94-5.98-5.94zm0 9.53c-1.72 0-3.2-1.42-3.2-3.6 0-2.2 1.48-3.6 3.2-3.6 1.74 0 3.22 1.4 3.22 3.6 0 2.18-1.48 3.6-3.22 3.6zm-14.82-7.7v2.54h6.08c-.18 1.43-.66 2.47-1.4 3.2-.9.9-2.28 1.9-4.68 1.9-3.72 0-6.64-3-6.64-6.72s2.92-6.72 6.64-6.72c2.02 0 3.48.8 4.56 1.82l1.78-1.8c-1.5-1.45-3.5-2.56-6.34-2.56-5.1 0-9.4 4.16-9.4 9.26 0 5.1 4.3 9.26 9.4 9.26 2.76 0 4.84-.9 6.48-2.62 1.68-1.68 2.2-4.04 2.2-5.94 0-.6-.04-1.14-.14-1.6h-8.54zm64.12 1.96c-.5-1.34-2.02-3.8-5.14-3.8-3.1 0-5.66 2.44-5.66 5.94 0 3.34 2.54 5.94 5.96 5.94 2.76 0 4.34-1.68 5-2.66l-2.04-1.36c-.68 1-1.6 1.66-2.96 1.66-1.34 0-2.3-.62-2.92-1.82l8.04-3.34-.28-.56zm-8.2 2c-.06-2.3 1.78-3.48 3.1-3.48.92 0 1.7.46 1.96 1.12l-5.06 2.36zm-6.54 5.84h2.76V22.91h-2.76v19.48zm-4.52-11.4h-.1c-.62-.74-1.8-1.4-3.3-1.4-3.14 0-6.02 2.76-6.02 6.3 0 3.52 2.88 6.28 6.02 6.28 1.5 0 2.68-.66 3.3-1.42h.1v.88c0 2.4-1.28 3.68-3.34 3.68-1.68 0-2.72-1.2-3.14-2.22l-2.38.98c.68 1.66 2.5 3.7 5.52 3.7 3.2 0 5.9-1.88 5.9-6.46V29.08h-2.56v1.08zm-3.16 9.2c-1.72 0-3.16-1.44-3.16-3.42 0-2 1.44-3.44 3.16-3.44 1.7 0 3.04 1.44 3.04 3.44 0 1.98-1.34 3.42-3.04 3.42zm32.94-17.36H168v19.48h2.76V33.54l2.4 2.36 5.38-5.34v11.84h2.76V22.91h-2.76v11.4l-6.5 6.64-4.24-4.24V22.91z' fill='%23fff'/%3E%3Cpath fill='%2300DFFF' d='M71.37 35.53l-14-8.07 14-8.09z'/%3E%3Cpath fill='%2300F076' d='M52.74 47.5V19.36l14.63 8.45z'/%3E%3Cpath fill='%23FFD900' d='M52.74 19.36L71.37 35.5l-5.02 5.02z'/%3E%3Cpath fill='%23FF3C4A' d='M52.74 47.5l13.61-6.98 5.02 5.01z'/%3E%3C/g%3E%3C/svg%3E";
+                      }}
                     />
-                  </button>
+                  </motion.a>
 
-                  {/* App Store download button */}
-                  <button
-                    onClick={() => handleAppDownload('App Store', 'Hero')}
-                    className="flex items-center transition-transform hover:scale-105 active:scale-98 focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded"
-                    aria-label="Download Freedom Ghana app from Apple App Store"
+                  {/* App Store download button - Coming Soon */}
+                  <div
+                    className="h-9 md:h-10 lg:h-12 w-32 md:w-36 lg:w-40 flex items-center justify-center opacity-60 cursor-not-allowed relative transition-transform hover:scale-102"
+                    aria-label="Freedom Ghana app coming soon to Apple App Store"
                   >
                     <OptimizedImage
                       src="/images/app-store-badge.png"
-                      alt="Download Freedom Ghana on the App Store"
-                      className="h-9 md:h-10 lg:h-12 w-32 md:w-36 lg:w-40"
+                      alt="Coming Soon to App Store"
+                      className="h-full w-full object-contain grayscale"
                       imageKey="appStore"
                       loading="eager"
                       fetchPriority="high"
                       fallbackSrc="/api/placeholder/140/42"
                     />
-                  </button>
+                    <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1.5 py-0.5 rounded-full transform translate-x-1 -translate-y-1">
+                      Soon
+                    </div>
+                  </div>
                 </div>
               </div>
 
