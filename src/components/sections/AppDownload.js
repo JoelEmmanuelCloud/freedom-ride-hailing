@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { trackEvent } from '../../utils/analytics';
 
 const AppDownload = () => {
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.freedomghana.app.user&pcampaignid=web_share";
 
   return (
     <section id="download" className={`py-8 sm:py-16 px-4 sm:px-6 bg-gray-100 text-gray-800`}>
@@ -62,7 +63,9 @@ const AppDownload = () => {
             <div className="flex flex-row flex-wrap gap-4 mb-6">
               {/* Google Play Store Button */}
               <motion.a
-                href="#"
+                href={playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="h-14 sm:h-16 w-40 sm:w-44 flex items-center justify-center"
                 onClick={() => trackEvent('Download', 'Click', 'Google Play - Download Section')}
                 whileHover={{ scale: 1.05 }}
@@ -80,59 +83,54 @@ const AppDownload = () => {
                 />
               </motion.a>
 
-              {/* App Store Button */}
-              <motion.a
-                href="#"
-                className="h-14 sm:h-16 w-40 sm:w-44 flex items-center justify-center"
-                onClick={() => trackEvent('Download', 'Click', 'App Store - Download Section')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
+              {/* App Store Button - Coming Soon */}
+              <motion.div
+                className="h-14 sm:h-16 w-40 sm:w-44 flex items-center justify-center opacity-60 cursor-not-allowed relative"
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
                 <img 
                   src="/images/app-store-badge.png" 
-                  alt="Download on the App Store" 
-                  className="h-full w-full object-contain"
+                  alt="Coming Soon to App Store" 
+                  className="h-full w-full object-contain grayscale"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 70' preserveAspectRatio='xMidYMid meet'%3E%3Crect width='240' height='70' rx='10' fill='%23000'/%3E%3Cpath fill='%23fff' d='M49.66 35.96c-.02-3.78 3.1-5.62 3.24-5.7-1.76-2.57-4.5-2.93-5.48-2.97-2.33-.23-4.55 1.38-5.74 1.38-1.18 0-3.01-1.34-4.95-1.3-2.55.04-4.9 1.48-6.2 3.76-2.65 4.6-.68 11.4 1.9 15.14 1.26 1.82 2.76 3.88 4.73 3.8 1.9-.07 2.62-1.23 4.92-1.23 2.3 0 2.95 1.23 4.96 1.2 2.05-.04 3.35-1.86 4.6-3.7 1.46-2.13 2.05-4.2 2.08-4.3-.04-.02-4-1.53-4.04-6.08zm-3.8-11.16c1.05-1.27 1.75-3.03 1.56-4.8-1.5.06-3.33 1.01-4.42 2.27-.97 1.12-1.82 2.92-1.59 4.64 1.68.14 3.38-.86 4.45-2.11z' /%3E%3Ctext x='20' y='50' fill='white' font-size='12' font-family='Arial'%3EDownload on the%3C/text%3E%3Ctext x='20' y='64' fill='white' font-size='18' font-family='Arial' font-weight='bold'%3EApp Store%3C/text%3E%3C/svg%3E";
+                    e.target.src = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 70' preserveAspectRatio='xMidYMid meet'%3E%3Crect width='240' height='70' rx='10' fill='%23666'/%3E%3Cpath fill='%23999' d='M49.66 35.96c-.02-3.78 3.1-5.62 3.24-5.7-1.76-2.57-4.5-2.93-5.48-2.97-2.33-.23-4.55 1.38-5.74 1.38-1.18 0-3.01-1.34-4.95-1.3-2.55.04-4.9 1.48-6.2 3.76-2.65 4.6-.68 11.4 1.9 15.14 1.26 1.82 2.76 3.88 4.73 3.8 1.9-.07 2.62-1.23 4.92-1.23 2.3 0 2.95 1.23 4.96 1.2 2.05-.04 3.35-1.86 4.6-3.7 1.46-2.13 2.05-4.2 2.08-4.3-.04-.02-4-1.53-4.04-6.08zm-3.8-11.16c1.05-1.27 1.75-3.03 1.56-4.8-1.5.06-3.33 1.01-4.42 2.27-.97 1.12-1.82 2.92-1.59 4.64 1.68.14 3.38-.86 4.45-2.11z' /%3E%3Ctext x='85' y='30' fill='%23999' font-size='10' font-family='Arial'%3EComing Soon%3C/text%3E%3Ctext x='85' y='45' fill='%23999' font-size='12' font-family='Arial' font-weight='bold'%3EApp Store%3C/text%3E%3C/svg%3E";
                   }}
                 />
-              </motion.a>
+                <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-2 py-1 rounded-full transform translate-x-2 -translate-y-2">
+                  Soon
+                </div>
+              </motion.div>
             </div>
             
             <div className="mt-4 sm:mt-6">
               <p className="text-xs sm:text-sm font-medium mb-2 sm:mb-3">Or scan the QR code to download:</p>
               
-              {/* Simple QR Code with reduced size for mobile */}
-              <div className="inline-block p-2 bg-white rounded-xl shadow-lg border-2 border-gray-200">
-                <svg className="w-24 h-24 sm:w-32 sm:h-32" viewBox="0 0 100 100" fill="none">
-                  {/* QR Code pattern - simplified version */}
-                  <rect width="100" height="100" fill="white"/>
-                  <g fill="#000">
-                    {/* Position detection patterns (corners) */}
-                    <rect x="10" y="10" width="20" height="20" />
-                    <rect x="13" y="13" width="14" height="14" fill="white" />
-                    <rect x="16" y="16" width="8" height="8" />
-                    
-                    <rect x="70" y="10" width="20" height="20" />
-                    <rect x="73" y="13" width="14" height="14" fill="white" />
-                    <rect x="76" y="16" width="8" height="8" />
-                    
-                    <rect x="10" y="70" width="20" height="20" />
-                    <rect x="13" y="73" width="14" height="14" fill="white" />
-                    <rect x="16" y="76" width="8" height="8" />
-                    
-                    {/* Alignment pattern */}
-                    <rect x="60" y="60" width="10" height="10" />
-                    <rect x="62" y="62" width="6" height="6" fill="white" />
-                    <rect x="64" y="64" width="2" height="2" />
-                    
-                    {/* Data patterns */}
-                    <path d="M40,10 h8 v8 h-8 z M50,10 h8 v8 h-8 z M30,20 h8 v8 h-8 z M50,20 h8 v8 h-8 z M60,20 h8 v8 h-8 z M10,30 h8 v8 h-8 z M30,30 h8 v8 h-8 z M40,30 h8 v8 h-8 z M60,30 h8 v8 h-8 z M80,30 h8 v8 h-8 z M30,40 h8 v8 h-8 z M50,40 h8 v8 h-8 z M70,40 h8 v8 h-8 z M20,50 h8 v8 h-8 z M40,50 h8 v8 h-8 z M60,50 h8 v8 h-8 z M10,60 h8 v8 h-8 z M30,60 h8 v8 h-8 z M70,60 h8 v8 h-8 z M40,70 h8 v8 h-8 z M60,70 h8 v8 h-8 z M70,70 h8 v8 h-8 z M30,80 h8 v8 h-8 z M50,80 h8 v8 h-8 z M70,80 h8 v8 h-8 z" />
-                  </g>
-                </svg>
-              </div>
+              {/* Real QR Code using QR Server API */}
+              <motion.a
+                href={playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block p-2 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:border-orange-300 transition-colors duration-200 cursor-pointer"
+                onClick={() => trackEvent('Download', 'Click', 'QR Code - Download Section')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <img 
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=${encodeURIComponent(playStoreUrl)}`}
+                  alt="QR Code for Freedom App Download"
+                  className="w-24 h-24 sm:w-32 sm:h-32"
+                  onError={(e) => {
+                    // Fallback to another QR code service if the first one fails
+                    e.target.onerror = null;
+                    e.target.src = `https://chart.googleapis.com/chart?chs=128x128&cht=qr&chl=${encodeURIComponent(playStoreUrl)}`;
+                  }}
+                />
+              </motion.a>
+              
+              <p className="text-xs text-gray-500 mt-2">Scan to download or tap to open Play Store</p>
             </div>
           </div>
           
